@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <style>
+        #addproductform{
+            display: none;
+        }
+        .newdiv{
+            margin: 10px;
+            border: 1px solid black;
+        }
+        #editproductform{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+   
+   <button id="addproduct">Add Product</button>
+   
+   <div id="editproductform">
+        <input type="text" placeholder="Name" id="ename">
+        <br>
+        <input type="text" placeholder="Price" id="eprice">
+        <br>
+        <input type="text" placeholder="Description" id="edesc">
+        <br>
+        <input type="text" placeholder="Quantity" id="equantity">
+        <br><br>
+        <button id="eadd">edit in List</button>       
+   </div>
+   
+    <div id="addproductform">
+        <input type="text" placeholder="Name" id="name">
+        <br>
+        <input type="text" placeholder="Price" id="price">
+        <br>
+        <input type="text" placeholder="Description" id="desc">
+        <br>
+        <input type="text" placeholder="Quantity" id="quantity">
+        <br><br>
+        <button id="add">Add to List</button>
+    </div>
+    <br>
+    <h3>List of products</h3>
+    <div id="listofproducts">
+        
+    </div> 
+    
+    <script src="script.js"></script>
+</body>
+</html>
