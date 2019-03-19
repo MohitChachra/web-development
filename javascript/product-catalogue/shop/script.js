@@ -9,11 +9,27 @@ var addtolist = document.getElementById("add");
 var listofproducts = document.getElementById("listofproducts");
 
 var editproductform = document.getElementById("editproductform");
-    
-//product array which will hold all the products added by the shopkeeper    
+
+//product array which will hold all the products added by the shopkeeper
 var productarr = new Array();
 var productid = 1;
-let arrid = -1;
+var arrid = -1;
+
+var productlist = localStorage.getItem("productarr");
+var dataarr = JSON.parse(productlist);
+if(dataarr == null || dataarr.length == 0)
+    {
+        
+    }
+else
+    {
+        for(var i=0;i<dataarr.length;i++)
+            {
+                productarr.push(dataarr[i]);
+                addtodom(productarr[i]);
+            }
+        productid = productarr[i-1].pid + 1;
+    }
 
 //to open my product addition form
 addproduct.addEventListener("click",function(){
@@ -45,6 +61,9 @@ function addtoproductarr()
     productid++;
     
     productarr.push(newproduct);
+    
+    var data = JSON.stringify(productarr);
+    localStorage.setItem("productarr",data);
     
     return newproduct;
 }
@@ -112,6 +131,9 @@ document.getElementById("eadd").onclick = function()
     productarr[arrid].desc = document.getElementById("edesc").value;
     productarr[arrid].quantity = document.getElementById("equantity").value;
     
+    var data = JSON.stringify(productarr);
+    localStorage.setItem("productarr",data);
+    
     changeindom(productarr[arrid].pid,productarr[arrid]);
     
     editproductform.style.display = "none";
@@ -143,6 +165,8 @@ function getarrindex(id)
 function deletefromarr(id)
 {
     productarr.splice(id,1);
+    var data = JSON.stringify(productarr);
+    localStorage.setItem("productarr",data);
 }
 
 function deletefromdom(division)
