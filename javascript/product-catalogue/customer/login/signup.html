@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a new account</title>
+    <style>
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #new input{
+            width: 400px;
+            font-size: 20px;
+            height: 50px;           
+        }
+        #new button{
+            width: 400px;
+            font-size: 20px;
+            height: 50px;            
+        }
+    </style>
+</head>
+<body>
+    <div id="new">
+        <h2>Create Your new account here</h2>
+        <input type="text" placeholder="Name"><br><br>
+        <input type="text" placeholder="Email" id="username"><br><br>
+        <input type="text" placeholder="phone"><br><br>
+        <input type="password" placeholder="password" id="password"><br><br>
+        <a href="loginpage.html" id="link"><button id="create">Create new Account</button></a>
+    </div>
+    
+    <script>
+        var addinfo = new Array();
+        document.getElementById("create").addEventListener("click",function(){
+        let data = localStorage.getItem("validation");
+        let info = JSON.parse(data);
+        if(info == null || info == undefined)
+            {
+               adduser();
+            }
+        else
+            {
+                for(let i=0;i<info.length;i++)
+                    {
+                        addinfo.push(info[i]);
+                    }
+                adduser();
+            }
+        });
+        
+        function adduser()
+        {
+                let user = new Object();
+                user.username = document.getElementById("username").value;
+                user.password = document.getElementById("password").value;
+                addinfo.push(user);
+                data = JSON.stringify(addinfo);
+                localStorage.setItem("validation",data);
+        }
+    </script>
+</body>
+</html>

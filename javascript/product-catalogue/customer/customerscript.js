@@ -9,7 +9,21 @@ var purchasedarr = new Array();
 var purchased = 0;
 
 var countfrompurchasedarr = localStorage.getItem("purchasedarr");
-var purchasedarr = JSON.parse(countfrompurchasedarr);
+var purchase = JSON.parse(countfrompurchasedarr);
+
+let quantitycount = new Array();
+
+if(productarr == null || productarr == undefined || productarr.length == 0)
+   {
+        alert("all the items are currently out of stock");
+   }
+else
+   {
+        for(let i=0;i<productarr.length;i++)
+        {
+            quantitycount.push(parseInt(productarr[i].quantity));
+        }
+   }
 
 checkoutbtn.addEventListener("click",function(){
     if(purchasedarr == null || purchasedarr.length == 0)
@@ -18,6 +32,7 @@ checkoutbtn.addEventListener("click",function(){
         }
     else
         {
+            checkoutbtn.setAttribute("href","checkout/checkoutpage.html");
             for(let i=0;i<purchasedarr.length;i++)
                 {
                     for(let j=i+1;j<purchasedarr.length;j++)
@@ -26,6 +41,7 @@ checkoutbtn.addEventListener("click",function(){
                                 {
                                     purchasedarr[i].quantity++;
                                     purchasedarr.splice(j,1);
+                                    j--;
                                 }
                         }
                 }
@@ -34,16 +50,17 @@ checkoutbtn.addEventListener("click",function(){
     localStorage.setItem("purchasedarr",da);
 })
 
-if(purchasedarr == 0 || purchasedarr == null || purchasedarr == undefined)
+if(purchase == null||purchase.length == 0  || purchase == undefined)
     {
         
     }
 else
     {
         let sum = 0;
-        for(var i=0;i<purchasedarr.length;i++)
+        for(var i=0;i<purchase.length;i++)
             {
-                sum += purchasedarr[i].quantity;
+                sum += purchase[i].quantity;
+                purchasedarr.push(purchase[i]);
             }
         cart.innerHTML = sum;
         purchased = sum;
@@ -62,7 +79,7 @@ function showproducts()
     {
         for(var i=0;i<productarr.length;i++)
             {
-                if(productarr[i].quantity != 0)
+                if(productarr[i].quantity > 0)
                     {
                         addtodom(productarr[i]);
                     }
@@ -96,14 +113,22 @@ function addtodom(product)
     
     buynow.addEventListener("click",function(event){
        let index =  getindex(event.target.parentNode);
-       if(parseInt(productarr[index].quantity) > 0)
-           {
-               updatetocart(index);
-               addtopurchasedarr(index);
-           }
+        if( quantitycount[index].quantity == 0)
+            {
+                alert('stock over');
+            }
         else
             {
-                alert("not available");
+                 if(quantitycount[index] > 0)
+                 {
+                     updatetocart(index);
+                     addtopurchasedarr(index);
+                     quantitycount[index]--;
+                 }
+                else
+                {
+                    alert("not available");
+                }
             }
     });
     

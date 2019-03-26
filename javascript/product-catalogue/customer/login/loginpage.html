@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login/signup</title>
+    <style>
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #loginpanel input{
+            width: 400px;
+            font-size: 30px;
+            height: 50px;
+        }
+        #loginpanel button{
+            width: 400px;
+            font-size: 20px;
+            height: 50px;            
+        }
+         #loginpanel p{
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginpanel">
+        <h2>Log in here</h2>
+        <input type="text" placeholder="username" id="username">
+        <br><br>
+        <input type="password" placeholder="password" id="password"><br><br>
+        <a href="#" id="submitlink"><button id="submit">Login</button></a>
+        <br><br>
+       <p>don't have account?<a href="signup.html" id="signup">signup here</a></p> 
+    </div>
+    <script src="loginpagescript.js"></script>
+</body>
+</html>
